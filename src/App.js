@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+// import { useState } from "react";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  return <TipCalculator />;
+}
+
+function TipCalculator() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BillInput />
+      <SelectPercentage>How did you like the service?</SelectPercentage>
+      <SelectPercentage>How did your friend like the service?</SelectPercentage>
+      <Output />
+      <Reset />
     </div>
   );
 }
 
-export default App;
+function BillInput() {
+  return (
+    <div>
+      How much was the bill?
+      <input id="bill" type="text" />
+    </div>
+  );
+}
+
+function SelectPercentage({ children }) {
+  return (
+    <div>
+      <label>{children}</label>
+      <select id="rating">
+        <option value="0">It was bad (0%)</option>
+        <option value="10">It was good (10%)</option>
+        <option value="20">Absolutely amazing! (20%)</option>
+      </select>
+    </div>
+  );
+}
+
+function Output() {
+  return (
+    <h3 class="tip-message">
+      You pay ${82 + 10} (${75 + 5} + ${10 + 2} tip)
+    </h3>
+  );
+}
+
+function Reset() {
+  return <button>Reset</button>;
+}
